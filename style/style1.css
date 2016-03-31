@@ -1,0 +1,109 @@
+html, body, div, ul, li, a {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #C8D5FF;
+}
+#wrapper {
+	background-color: #FD0F20;
+	width: 96%;
+	margin-left: 2%;
+	height: 100%;
+}
+
+#header {
+	background-color: #ED2D2D;
+	height: 22%;
+	text-align: center;
+	color: white;
+}
+
+#nav {
+	text-align: right;
+	background-color: #334CAA;
+}
+ul {
+	list-style-type: none;
+	padding-top: 0.3%;
+	padding-bottom: 0.3%;
+}
+li {
+	background-color: #FCFDFE;
+	display: inline-block;
+	padding: 0.5%;
+	margin-right: 0.5%;
+}
+a {
+	text-decoration: none;
+	display: block;
+}
+#white {
+	background-color: white;
+	color: #2E3A83;
+}
+#blue{
+	background-color: white;
+	color: #2E3A83;
+}
+#main {
+	background-color: #FEFEFE;
+	height: 69%;
+	margin-top: 2%;
+	position: relative;
+}
+#first{
+	position: absolute;
+	top:5%;
+	left:35%;
+}
+#second{
+	position: absolute;
+	top:57%;
+	left: 15%;
+	font-size: 17px;
+}
+img {
+	width: 70%;
+}
+
+#third {
+	position: absolute;
+	top:72%;
+	left: 42%;
+}
+
+#lii{
+	color: #2E3A83;
+}
+#fourth{
+	position: absolute;
+	top:82%;
+	left: 46%;
+}
+#reg{
+	position: absolute;
+	left: 41%;
+}
+#form{
+	position: absolute;
+	top: 5%;
+	left: 39%;
+}
+#contact{
+	position: absolute;
+	top: 28%;
+	left: 41%;
+}
+#footer {
+	background-color: #A1A3A6;
+	height: 4%;
+	margin-top: 0.5%;
+	text-align: center;
+}
+
