@@ -19,7 +19,7 @@ body {
 
 #header {
 	background-color: #ED2D2D;
-	height: 22%;
+	height: 23.5%;
 	text-align: center;
 	color: white;
 }
@@ -53,19 +53,19 @@ a {
 }
 #main {
 	background-color: #FEFEFE;
-	height: 69%;
+	height: 70%;
 	margin-top: 2%;
 	position: relative;
 }
 #first{
 	position: absolute;
-	top:5%;
+	top:7%;
 	left:35%;
 }
 #second{
 	position: absolute;
 	top:57%;
-	left: 15%;
+	left: 14%;
 	font-size: 17px;
 }
 img {
@@ -88,12 +88,22 @@ img {
 }
 #reg{
 	position: absolute;
-	left: 41%;
+	left: 37%;
 }
 #form{
 	position: absolute;
-	top: 5%;
+	top: 1.5%;
 	left: 39%;
+}
+#success{
+	position: absolute;
+	top: 5%;
+	left: 40%;
+}
+#success1{
+	position: absolute;
+	top: 20%;
+	left: 43%;
 }
 #contact{
 	position: absolute;
@@ -103,7 +113,7 @@ img {
 #footer {
 	background-color: #A1A3A6;
 	height: 4%;
-	margin-top: 0.5%;
+	margin-top: 0.3%;
 	text-align: center;
 }
 

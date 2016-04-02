@@ -1,36 +1,51 @@
-
 <?php
 include_once('includes/header.php');
 ?>
-
 <div id="main">
-<?php
+<?php  
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+if ($action=="")    /* display the contact form */
+    {
+    ?>
+    <legend class="text-center header">За връзка с нас</legend>
+    <legend class="text-center header">gsm: 0888776655</legend>
+    <legend class="text-center header">email: cbr400rrbulgaria@abv.bg</legend>
 
-if (empty($_POST['submit'])) {
-	
-echo "<div id='reg'><h3>За връзка с нас:</h3>
-<p>gsm: 0888776655</p>
-<p>email: cbr400rrbulgaria@abv.bg</p></div>";
+ <div class="well span6" align="center">
+    <form  action="" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="action" value="submit">
+    Име *:<br>
+    <input name="name" type="text" value="" size="30"/><br>
+    Email *:<br>
+    <input name="name" type="text" value="" size="30"/><br>
+    Телефон *:<br>
+    <input name="email" type="text" value="" size="30"/><br>
+    Съобщение*:<br>
+    <textarea name="message" rows="7" cols="30"></textarea><br>
 
-echo "<span id='contact'><form action='contacts.php method='post'>";
-input_type('<p>','</p>', 'fn','text', 'first_name ', '','Име* ');
-input_type('<p>','</p>', 'em', 'text', 'email', '', 'Email* ');
-input_type('<p>','</p>','tel', 'text', 'telefon', '', 'Телефон ');
-input_text('<p>', '</p>', 'Съобщение* ', 'message', '');
-input_type('<p>','</p>','sub', 'submit', 'submit', 'Изпрати', '');
-echo "</form></span>";
+    <input type="submit" value="Изпрати"/>
+    </form>
 
-}
-else{
-	$first_name = $_POST['first_name'];
-	$email = $_POST['email'];
-	$telefon = $_POST['telefon'];
-
-	
-}
-?>
 </div>
-
-<?php
-include_once('includes/footer.php');
-?>
+    <?php
+    } 
+else                /* send the submitted data */
+    {
+    $name=$_REQUEST['name'];
+    $email=$_REQUEST['email'];
+    $message=$_REQUEST['message'];
+    if (($name=="")||($email=="")||($message==""))
+       {
+        echo "<h3>Задължителните полета не са попълнени !
+        <p> Моля опитайте отново !</p><a href=\"\">Назад</a><h3>";
+        }
+    else{        
+        $from="From: $name<$email>\r\nReturn-path: $email";
+        $subject="Message sent using your contact form";
+        mail("youremail@yoursite.com", $subject, $message, $from);
+        echo "<p><h3>Благодарим ви за изпратеното запитване!</p>
+        <p>Ще отговорим възможно най-бързо !</p></h3>";
+        }
+    } 
+   
+?> 

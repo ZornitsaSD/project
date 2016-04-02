@@ -7,32 +7,53 @@ $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
 //  	echo "Connected successfully !";
 //  	}
 if(empty($_POST['submit'])){
-	$id_model = $_GET['id'];
+	$id_part = $_GET['id'];
 
-	$q 		= "SELECT * FROM models 
-			LEFT JOIN marks ON models.id_mark=marks.id_mark 
-			WHERE models.id_model=$id_model";
+	$q 		= "SELECT * FROM parts 
+			JOIN categories ON parts.id_category=categories.id_category JOIN models ON parts.id_model=models.id_model 
+			WHERE parts.id_part=$id_part";
+
 	$res = mysqli_query($conn, $q);
 	$row = mysqli_fetch_assoc($res);
 
-	echo "<p>Въведи промени в модела</p>";
+	echo "<p>Въведи промени</p>";
 	echo "<form action='update.php' method='post'>";
 	
-	echo "<input type='hidden' name='id_model' value=".$row['id_model'].">";
+	echo "<input type='hidden' name='id_part' value=".$row['id_part'].">";
 	
-	echo "<p>Промени модела</p>";
-	echo "<input type='text' name='model_name' value=".$row['model_name'].">";
+	echo "<p>Промени частта</p>";
+	echo "<input type='text' name='part_name' value=".$row['part_name'].">";
+	echo "<p>Промени описанието</p>";
+	echo "<textarea name='description' value=".$row['description'].">".$row['description']."</textarea>";
+	echo "<p>Промени наличност</p>";
+	echo "<input type='text' name='instock' value=".$row['instock'].">";
+	echo "<p>Промени цената</p>";
+	echo "<input type='text' name='price' value=".$row['price'].">";
 
-	echo "<p>Промени марката</p>";
-	echo "<select name='id_mark'>";
+	echo "<p>Промени категорията</p>";
+	echo "<select name='id_category'>";
 	
-	$q_marks 		= "SELECT * FROM marks WHERE date_deleted IS NULL";
-	$res_marks 	= mysqli_query($conn, $q_marks);
-	if (mysqli_num_rows($res_marks) > 0) {
-		while($row_marks = mysqli_fetch_assoc($res_marks)){ 			
-			echo '<option value="'.$row_marks['id_mark'].'"';
-			if($row_marks['id_mark']===$row['id_mark']){echo 'selected='.$row_marks['id_mark']."'";}
-			echo '>'.$row_marks['mark_name'].'</option>';
+	$q_categories 		= "SELECT * FROM categories WHERE date_deleted IS NULL";
+	$res_categories 	= mysqli_query($conn, $q_categories);
+	if (mysqli_num_rows($res_categories) > 0) {
+		while($row_categories = mysqli_fetch_assoc($res_categories)){ 			
+			echo '<option value="'.$row_categories['id_category'].'"';
+			if($row_categories['id_category']===$row['id_category']){echo 'selected='.$row_categories['id_category']."'";}
+			echo '>'.$row_categories['category_name'].'</option>';
+		}
+	}
+	echo "</select>";
+
+	echo "<p>Промени модела</p>";
+	echo "<select name='id_model'>";
+	
+	$q_models 		= "SELECT * FROM models WHERE date_deleted IS NULL";
+	$res_models 	= mysqli_query($conn, $q_models);
+	if (mysqli_num_rows($res_models) > 0) {
+		while($row_models = mysqli_fetch_assoc($res_models)){ 			
+			echo '<option value="'.$row_models['id_model'].'"';
+			if($row_models['id_model']===$row['id_model']){echo 'selected='.$row_models['id_model']."'";}
+			echo '>'.$row_models['model_name'].'</option>';
 		}
 	}
 	echo "</select>";
@@ -40,17 +61,26 @@ if(empty($_POST['submit'])){
 	echo "<p><input type='submit' name='submit' value='Промени'></p>";
 	echo "</form>";
 }else {
-	//!!!!!!!!!!!
-	$id_model			= $_POST['id_model'];
-	$model_name 		= $_POST['model_name'];
-	$id_mark 			= $_POST['id_mark'];
+	
+	$id_part			= $_POST['id_part'];
+	$part_name 		    = $_POST['part_name'];
+	$description        =$_POST['description'];
+	$instock            =$_POST['instock'];
+	$price              =$_POST['price'];
+	$id_category 		= $_POST['id_category'];
+	$id_model 			= $_POST['id_model'];
+
 	
 	
-	$update_query = "UPDATE models 
-					SET model_name = '$model_name',
-					id_mark = $id_mark	
-					WHERE id_model = $id_model";
-					
+	$update_query = "UPDATE parts 
+					SET part_name = '$part_name',
+					description = '$description',
+					instock = $instock,
+					price = $price,
+					id_category = $id_category,
+					id_model = $id_model
+					WHERE id_part = $id_part";
+				
 	$update_result= mysqli_query($conn, $update_query);
 	if ($update_result) {
  				

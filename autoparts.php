@@ -8,101 +8,127 @@ include_once('includes/header.php');
 
 <div id="main">
 <?php
-header('Content-Type: text/html; charset=utf-8');
+$conn = mysqli_connect('localhost', 'root', '', 'autoparts');
+//header('Content-Type: text/html; charset=utf-8');
 echo "<p>";
 echo "Търсене на авточасти по марка и модел на автомобила: ";
 echo "</p>";
-/*echo '<form action="autoparts.php" method="post">';
 
-select_text('<p>', '', 'makes', 'Избери', 'Honda', 'Mazda', 'Mitsubishi', 'Nissan', 'Subaru', 'Suzuki', 'Toyota');
-input_type(' ', '</P>', 'sb', 'submit', 'submit', 'Търсене', '');
-echo '</form>';
+/*if (empty($_POST['submit'])){
+	echo "<form action='autoparts.php' method='post'>";
+	echo "<select name='id_mark'>";
+	
+	$q 		= "SELECT * FROM marks WHERE date_deleted IS NULL";
+	$res 	= mysqli_query($conn, $q);
+     if (mysqli_num_rows($res) > 0) {
+		while($row = mysqli_fetch_assoc($res)){ 			
+			echo '<option value="'.$row['id_mark'].'"';
+			if($row['id_mark']===$row['id_mark']){echo 'selected='.$row['id_mark']."'";}
+			echo '>'.$row['mark_name'].'</option>';
+		}
+	 }
+	echo "</select>";
+	echo "<p><input type='submit' name='submit' value='Избери'></p>";
+	echo "</form>";}
 
-if (!empty($_POST['submit'])) {
+ 
+ else{
+	$id_mark = $_POST['id_mark'];
+	echo "<form action='autoparts.php' method='post'>";
+	echo "<select name='id_model'>";
+		$q2 	= "SELECT * FROM models WHERE id_mark = $id_mark AND date_deleted IS NULL";
+		$res2 	= mysqli_query($conn, $q2);
+		if (mysqli_num_rows($res2) > 0) {
+		while($row2 = mysqli_fetch_assoc($res2)){ 			
+			echo '<option value="'.$row2['id_model'].'"';
+			if($row2['id_model']===$row2['id_model']){echo 'selected='.$row2['id_model']."'";}
+			echo '>'.$row2['model_name'].'</option>';
+		}
+	}	
+	echo "</select>";
+	echo "<p><input type='submit' name='submit' value='Избери'></p>";
+    echo "</form>";
+   
+}*/
 
-	$makes=$_POST['makes'];
-}
-	$make_model = array('Honda' => 'Honda Civic, Honda Stream, Honda CR-V',
-				         'Mazda' => 'Mazda RX-8, Mazda 5, Mazda 6',
-				         'Mitsubishi' => 'Mitsubishi Galant, Mitsubishi Challenger, Mitsubishi Pajero Pinin', 
-				         'Nissan' => 'Nissan 300 zx, Nissan Almera tino, Nissan Micra',
-				         'Subaru' => 'Subaru Forester, Subaru Impresa',
-				         'Suzuki' => 'Suzuki Grand vitara, Suzuki Swift',
-				         'Toyota' => 'Toyota Land cruiser, Toyota Celica, Toyota MR-2');	
 
-	foreach ($make_model as $key => $value) {
+if (empty($_POST['submit'])){
+	echo "<form action='autoparts.php' method='post'>";
+	echo "<select name='id_mark'>";
+	
+	$q 		= "SELECT * FROM marks WHERE date_deleted IS NULL";
+	$res 	= mysqli_query($conn, $q);
+     if (mysqli_num_rows($res) > 0) {
+		while($row = mysqli_fetch_assoc($res)){ 			
+			echo '<option value="'.$row['id_mark'].'"';
+			if($row['id_mark']===$row['id_mark']){echo 'selected='.$row['id_mark']."'";}
+			echo '>'.$row['mark_name'].'</option>';
+		}
+	 }
+	echo "</select>";
+	echo "<p><input type='submit' name='submit' value='Избери'></p>";
+	echo "</form>";
 
-		if ($makes == $value) {
-			
-		echo "<p>".$value.".</p>";	
-		}		
-	}*/
-?>
-<?php
-if (!isset($_POST['submit'])) {
-?>
-<form action="autoparts.php" method="post">
-		<select name="makes">
-			<option value="1">Избери</option>
-			<option value="Honda Civic">Honda Civic</option>
-			<option value="Honda Stream">Honda Stream</option>
-			<option value="Honda CR-V">Honda CR-V</option>
-			<option value="Mazda RX-8">Mazda RX-8</option>
-			<option value="Mazda 5">Mazda 5</option>
-			<option value="Mazda 6">Mazda 6</option>
-			<option value="Mitsubishi Galant">Mitsubishi Galant</option>	
-			<option value="Mitsubishi Challenger">Mitsubishi Challenger</option>
-			<option value="Mitsubishi Pajero Pinin">Mitsubishi Pajero Pinin</option>		
-			<option value="Nissan 300zx">Nissan 300zx</option>
-			<option value="Nissan Almera Tino">Nissan Almera Tino</option>
-			<option value="Nissan Micra">Nissan Micra</option>
-			<option value="Subaru Forester">Subaru Forester</option>
-			<option value="Subaru Impreza">Subaru Impreza</option>
-			<option value="Suzuki Grand vitara">Suzuki Grand vitara</option>
-			<option value="Suzuki Swift">Suzuki Swift</option>
-			<option value="Toyota Land cruiser">Toyota Land cruiser</option>
-			<option value="Toyota Celica">Toyota Celica</option>
-			<option value="Toyota MR-2">Toyota MR-2</option>
-		</select>
-		<input type="submit" name="submit" value="Избери">
-	</form>
-<?php
-	} else {
-	$makes = $_POST['makes'];
-	$make_model = array('Honda Civic' => 
-		'Honda Civic 2003 год., 1.6 бензин
-		<table border=1>
-		<tr><td>част</td><td>брой</td><td>цена, лв</td></tr>
-		<tr><td>динамо</td><td>3</td><td>80</td></tr>
-		<tr><td>стартер</td><td>2</td><td>70</td></tr>
-		<tr><td>компресор климтик</td><td>1</td><td>100</td></tr>
-		<tr><td>хидравлична помпа</td><td>1</td><td>70</td></tr>
-		</table>',
-						'Honda Stream' => '2001 год., 2.0 бензин',
-				         'Honda CR-V' => '2003 год., 2.0 бензин',
-				         'Mazda RX-8' => '2006 год., 2.6i бензин',
-				         'Mazda 5' => '2009 год., 1.8 бензин',
-				         'Mazda 6' => '2006 год., 2.0 дизел',
-				         'Mitsubishi Galant' => '2001, 2.5 V6 бензин',
-				         'Mitsubishi Challenger' => '1999, 3.0 бензин',
-				         'Mitsubishi Pajero Pinin' => '2000, 1.8 GDI',   
-				         'Nissan 300zx' => '1998, 3.0 бензин',
-				         'Nissan Almera Tino' => '2001, 1.8 бензин',
-				         'Nissan Micra' => '2004, 1.2i бензин',
-				         'Subaru Forester' => '1999,  2.0 турбо, бензин',
-				         'Subaru Impreza' => '1998 год., 2.0 турбо, бензин',
-				         'Suzuki Grand vitara' => '2003 год., 2.0 16V бензин',
-				         'Suzuki Swift' => '2008 год., 1.5 бензин',
-				         'Toyota Land cruiser' => '1998, 3.0 TDI',
-				         'Toyota Celica' => '2005, 1.8 VVTI бензин',
-				         'Toyota MR-2' => '2001, 1.8 VVTI бензин');	
+}else{
+	
+	echo "<p>Избери модел</p>";
+	$id_mark = $_POST['id_mark'];
 
-	foreach ($make_model as $key => $value) {
-		if ($makes == $key) {	
-		echo "<p>".$value.".</p>";	
-		} 		
+	echo "<form action='autoparts.php' method='post'>";
+	echo "<select name='id_model'>";
+	
+	$q_models 		= "SELECT * FROM models WHERE id_mark = $id_mark AND date_deleted IS NULL";
+	$res_models 	= mysqli_query($conn, $q_models);
+	if (mysqli_num_rows($res_models) > 0) {
+		while($row_models = mysqli_fetch_assoc($res_models)){ 			
+			echo '<option value="'.$row_models['id_model'].'"';
+			if($row_models['id_model']===$row_models['id_model']){echo 'selected='.$row_models['id_model']."'";}
+			echo '>'.$row_models['model_name'].'</option>';
+		}
 	}
+	echo "</select>";
+
+
+	echo "<p>Избери категория</p>";
+	echo "<select name='id_category'>";
+	
+	$q_categories 		= "SELECT * FROM categories WHERE date_deleted IS NULL";
+	$res_categories 	= mysqli_query($conn, $q_categories);
+	if (mysqli_num_rows($res_categories) > 0) {
+		while($row_categories = mysqli_fetch_assoc($res_categories)){ 			
+			echo '<option value="'.$row_categories['id_category'].'"';
+			if($row_categories['id_category']===$row_categories['id_category']){echo 'selected='.$row_categories['id_category']."'";}
+			echo '>'.$row_categories['category_name'].'</option>';
+		}
+	}
+	echo "</select>";
+	echo "<p><input type='submit' name='submit' value='Избери'></p>";
+	if (empty($_POST['submit'])){
+		}else{echo 111111111111111;
+	echo "</form>";	
+	
+	echo "<p>Избери част</p>";
+	$id_category = $_POST['id_category'];
+
+	echo "<select name='id_part'>";
+	
+	$q_parts 		= "SELECT * FROM parts WHERE id_category = $id_category AND date_deleted IS NULL";
+	$res_parts 	= mysqli_query($conn, $q_parts);
+	if (mysqli_num_rows($res_parts) > 0) {
+		while($row_parts = mysqli_fetch_assoc($res_parts)){ 			
+			echo '<option value="'.$row_parts['id_part'].'"';
+			if($row_parts['id_part']===$row_parts['id_part']){echo 'selected='.$row_parts['id_part']."'";}
+			echo '>'.$row_parts['part_name'].'</option>';
+		}
+	}
+	echo "</select>";
+	echo "<p><input type='submit' name='submit' value='Избери'></p>";
+	echo "</form>";	
+	
 }
+
+}
+
 ?>
 </div>
 

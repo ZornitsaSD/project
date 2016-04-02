@@ -31,7 +31,7 @@ if(empty($_POST['submit'])){
 	if (mysqli_num_rows($res_marks) > 0) {
 		while($row_marks = mysqli_fetch_assoc($res_marks)){ 			
 			echo '<option value="'.$row_marks['id_mark'].'"';
-			if($row_marks['id_mark']===$row['id_mark']){echo 'selected='.$row_marks['id_mark']."'";}
+			if($row_marks['id_mark']===$row_marks['id_mark']){echo 'selected='.$row_marks['id_mark']."'";}
 			echo '>'.$row_marks['mark_name'].'</option>';
 		}
 	}

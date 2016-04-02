@@ -5,12 +5,12 @@ $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
 // 	} else {
 // 	echo "Connected successfully !";
 // 	}
-$model_id 	= $_GET['id'];
+$id_part 	= $_GET['id'];
 $date 		= date('Y-m-d');
 
-$delete_query = 	"UPDATE models 
+$delete_query = 	"UPDATE parts 
 					SET date_deleted ='$date'
-					WHERE id_model = $id_model";
+					WHERE id_part = $id_part";
 	
 $delete_result = mysqli_query($conn, $delete_query);
 

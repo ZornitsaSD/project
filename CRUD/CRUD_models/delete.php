@@ -5,7 +5,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
 // 	} else {
 // 	echo "Connected successfully !";
 // 	}
-$model_id 	= $_GET['id'];
+$id_model 	= $_GET['id'];
 $date 		= date('Y-m-d');
 
 $delete_query = 	"UPDATE models 
