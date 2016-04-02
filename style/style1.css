@@ -37,7 +37,7 @@ li {
 	background-color: #FCFDFE;
 	display: inline-block;
 	padding: 0.5%;
-	margin-right: 0.5%;
+	margin-right: 1%;
 }
 a {
 	text-decoration: none;
@@ -105,11 +105,43 @@ img {
 	top: 20%;
 	left: 43%;
 }
+#search{
+	position: absolute;
+	top: 5%;
+	left: 29%;
+}
+#search1{
+	position: absolute;
+	top: 25%;
+	left: 43%;
+}
+#search2{
+	position: absolute;
+	top: 20%;
+	left: 37%;
+}
+
 #contact{
 	position: absolute;
 	top: 28%;
 	left: 41%;
 }
+#cont{
+	position: absolute;
+	top: 20%;
+	left: 35%;
+}
+#cont1{
+	position: absolute;
+	top: 35%;
+	left: 38%;
+}
+#cont2{
+	position: absolute;
+	top: 49%;
+	left: 44%;
+}
+
 #footer {
 	background-color: #A1A3A6;
 	height: 4%;

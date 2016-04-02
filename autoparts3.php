@@ -1,24 +1,20 @@
 <?php
 include_once('includes/header.php');
-
-?>
-
-
-<?php
-
 ?>
 
 <div id="main">
-
 <?php
-
-if (empty($_POST['submit'])){$_POST['submit']='';}
-
 $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
+if (empty($_POST['submit'])){$_POST['submit']='';}
+echo "<div id='search'>";
 echo "<p>";
-echo "Търсене на авточасти по марка и модел на автомобила: ";
+echo "ТЪРСЕНЕ НА АВТОЧАСТИ ПО МАРКА И МОДЕЛ НА АВТОМОБИЛА";
 echo "</p>";
+echo "</div>";
+
  if ($_POST['submit']==''){
+ 	echo "<div id='search1'>";
+ 	echo "<p>Избери марка</p>";
     echo"<form action='autoparts3.php' method='post'>";
 	echo "<select name='id_mark'>";
 	$q 		= "SELECT * FROM marks WHERE date_deleted IS NULL";
@@ -33,10 +29,12 @@ echo "</p>";
 	echo "</select>";
 	echo "<p><input type='submit' name='submit' value='Избери'></p>";
 	echo "</form>";
+	echo "</div>";
     }
   	
 
   if ($_POST['submit']=='Избери'){
+  	echo "<div id='search1'>";
 	echo "<p>Избери модел</p>";
 	$id_mark = $_POST['id_mark'];
 
@@ -53,13 +51,14 @@ echo "</p>";
 		}
 	}
 	echo "</select>";
-	echo "<p><input type='submit' name='submit' value='Избери!'></p>";
+	echo "<p><input type='submit' name='submit' value='Избери '></p>";
 	echo "</form>";
-	
+	echo "</div>";
 
 
 	}
-	if ($_POST['submit']=='Избери!') {
+	if ($_POST['submit']=='Избери ') {
+	echo "<div id='search1'>";
 	echo "<p>Избери категория</p>";
 	echo"<form action='autoparts3.php' method='post'>";
 	echo "<select name='id_category'>";
@@ -74,13 +73,14 @@ echo "</p>";
 		}	
 	}
 	echo "</select>";
-	echo "<p><input type='submit' name='submit' value='Избери  '></p>";
+	echo "<p><input type='submit' name='submit' value='Избери   '></p>";
 	echo "</form>";
-	
+	echo "</div>";
     }
 
     
-    if ($_POST['submit']=='Избери  ') {
+    if ($_POST['submit']=='Избери   ') {
+    echo "<div id='search1'>";
 	echo "<p>Избери част</p>";
 	$id_category = $_POST['id_category'];
 	echo"<form action='autoparts3.php' method='post'>";
@@ -92,16 +92,18 @@ echo "</p>";
 		while($row_parts = mysqli_fetch_assoc($res_parts)){ 			
 			echo '<option value="'.$row_parts['id_part'].'"';
 			if($row_parts['id_part']===$row_parts['id_part']){echo 'selected='.$row_parts['id_part']."'";}
-			echo '>'.$row_parts['part_name'].'</option>';
+			echo '>'.$row_parts['description'].'</option>';
 		}
 	}
 	echo "</select>";
-	echo "<p><input type='submit' name='submit' value='Избери...'></p>";
+	echo "<p><input type='submit' name='submit' value='Избери    '></p>";
 	echo "</form>";
-	
+	echo "</div>";
 
-	}
-    if ($_POST['submit']=='Избери...'){
+}
+
+    if ($_POST['submit']=='Избери    '){
+   	echo "<div id='search2'>";
     echo"<form action='autoparts3.php' method='post'>";
 	$id_part = $_POST['id_part'];
 	//$id_model = $_POST['id_model'];
@@ -110,7 +112,7 @@ echo "</p>";
 	$q1 ="SELECT description, price, instock FROM parts 
 		 WHERE id_part=$id_part AND date_deleted IS NULL ";
 	$res1 	= mysqli_query($conn, $q1);
-   	echo "В момента разполагаме с: ";
+   	echo "<p>В момента разполагаме с: </p>";
     echo "<table border = 1>";
     echo '<tr>';
 		echo '<td>Описание на частта</td>';
@@ -128,6 +130,7 @@ echo "</p>";
 	}
     echo "</table>";
     echo "</form>";
+    echo "</div>";
     }
 
 

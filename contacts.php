@@ -36,15 +36,26 @@ else                /* send the submitted data */
     $message=$_REQUEST['message'];
     if (($name=="")||($email=="")||($message==""))
        {
-        echo "<h3>Задължителните полета не са попълнени !
-        <p> Моля опитайте отново !</p><a href=\"\">Назад</a><h3>";
+        echo "<div id='cont'>";
+        echo "<h3>Задължителните полета не са попълнени !<h3>";
+        echo "</div>";
+        echo "<div id='cont1'>";
+        echo "<p><h3> Моля опитайте отново !<h3></p>";
+        echo "</div>";
+        echo "<div id='cont2'>";
+        echo "<h3><a href=\"\">Назад</a></h3>";
+        echo "</div>";
         }
     else{        
         $from="From: $name<$email>\r\nReturn-path: $email";
         $subject="Message sent using your contact form";
         mail("youremail@yoursite.com", $subject, $message, $from);
-        echo "<p><h3>Благодарим ви за изпратеното запитване!</p>
-        <p>Ще отговорим възможно най-бързо !</p></h3>";
+        echo "<div id='cont'>";
+        echo "<p><h3>Благодарим ви за изпратеното запитване!</h3></p>";
+        echo "</div>";
+        echo "<div id='cont1'>";
+        echo "<p><h3>Ще отговорим възможно най-бързо !</h3></p>";
+        echo "</div>";
         }
     } 
    

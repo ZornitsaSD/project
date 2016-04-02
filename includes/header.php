@@ -21,9 +21,6 @@ require_once('includes/functions.php');
 					<a href="index.php"> <span id="white">Начало<span></a>
 				</li>
                 <li>
-                    <a href="#"><span id="blue">Авточасти<span></a>
-                </li>
-                <li>
                     <a href="contacts.php"><span id="blue">Контакти<span></a>
                 </li>
         </ul>
