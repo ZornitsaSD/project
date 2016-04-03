@@ -23,8 +23,8 @@ input_type('<p>','</p>', 'sn', 'text', 'surname', '', 'Фамилия ');
 input_type('<p>','</p>', 'em', 'text', 'email', '', 'Email* ');
 input_type('<p>','</p>','usr', 'text', 'username', '', 'Потребителско име* ');
 input_type('<p>','</p>','ps', 'password', 'password', '', 'Парола* ');
-input_type('<p>','</p>', 'check', 'checkbox', 'agreement ',  '', 'Съгласен съм с условията за ползване на сайта');
-input_type('<p>','</p>','sub', 'submit', 'submit', 'Регисрация', '');
+//input_type('<p>','</p>', 'check', 'checkbox', 'agreement ',  '', 'Съгласен съм с условията за ползване на сайта*');
+input_type('<p>','</p>','sub', 'submit', 'submit', 'Регистрация', '');
 echo "</span></form>";
 
 }else{
@@ -33,6 +33,7 @@ echo "</span></form>";
   $email = $_POST['email'];
   $username = $_POST['username'];
   $password = $_POST['password'];
+  //$agreement = $_POST['agreement'];
   $password = md5($password);
   $insert_query =   "INSERT INTO users(first_name, surname, email, username, password) 
             VALUES ('$first_name', '$surname', '$email', '$username', '$password')";

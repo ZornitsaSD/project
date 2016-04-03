@@ -7,6 +7,7 @@ include_once('includes/header.php');
 
 <?php
 $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
+
 if (empty($_POST['submit'])){$_POST['submit']='';}
 echo "<div id='search'>";
 echo "<p>";

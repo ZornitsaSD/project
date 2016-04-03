@@ -19,21 +19,21 @@ if(empty($_POST['submit'])){
 	echo "<p>Въведи цена на частта</p>";
 	echo "<input type='text' name='price'>";
 
-	$q0 	= "SELECT * FROM partss WHERE date_deleted IS NULL";
-	$res0 	= mysqli_query($conn, $q0);
-	echo "<p>Избери част</p>";
-	echo "<select name='id_parts'>";
+	$q 	= "SELECT * FROM categories WHERE date_deleted IS NULL";
+	$res 	= mysqli_query($conn, $q);
+	echo "<p>Избери категория на частта</p>";
+	echo "<select name='id_category'>";
 	
-	if (mysqli_num_rows($res0) > 0) {
-		while($row0 = mysqli_fetch_assoc($res0)){ 
-			echo '<option value="'.$row0['id_parts'].'"';
-			if($row0['parts_name']==='--'){echo 'selected="--"';}
-			echo '>'.$row0['parts_name'].'</option>';
+	if (mysqli_num_rows($res) > 0) {
+		while($row = mysqli_fetch_assoc($res1)){ 
+			echo '<option value="'.$row['id_category'].'"';
+			if($row['category_name']==='--'){echo 'selected="--"';}
+			echo '>'.$row['category_name'].'</option>';
 		}
 	}
 	echo "</select>";
 
-	/*$q1 	= "SELECT * FROM categories WHERE date_deleted IS NULL";
+	$q1 	= "SELECT * FROM categories WHERE date_deleted IS NULL";
 	$res1 	= mysqli_query($conn, $q1);
 	echo "<p>Избери категория на частта</p>";
 	echo "<select name='id_category'>";
@@ -45,7 +45,7 @@ if(empty($_POST['submit'])){
 			echo '>'.$row1['category_name'].'</option>';
 		}
 	}
-	echo "</select>";*/
+	echo "</select>";
 
 	$q2 		= "SELECT * FROM models WHERE date_deleted IS NULL";
 	$res2 	= mysqli_query($conn, $q2);
@@ -64,17 +64,17 @@ if(empty($_POST['submit'])){
 	echo "<p><input type='submit' name='submit' value='Въведи'></p>";
 	echo "</form>";
 }
-else{	
+else{
+	$part_name 		= $_POST['part_name'];	
 	$description 	= $_POST['description'];
 	$instock        = $_POST['instock'];
 	$price		    = $_POST['price'];
-	$id_parts       = $_POST['id_parts'];
 	$id_model       = $_POST['id_model'];
-	//$id_category 	= $_POST['id_category'];
+	$id_category 	= $_POST['id_category'];
 	
 	
-	$insert_query = 	"INSERT INTO parts(description, instock, price, id_parts, id_model) 
-						VALUES ('$description', $instock, $price, $id_parts, $id_model)";
+	$insert_query = 	"INSERT INTO parts(part_name, description, instock, price, id_category, id_model) 
+						VALUES ('$part_name', '$description', $instock, $price, $id_category, $id_model)";
 		
 	$insert_result= mysqli_query($conn, $insert_query);
 	if ($insert_result) {

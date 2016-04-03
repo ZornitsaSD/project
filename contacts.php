@@ -57,6 +57,6 @@ else                /* send the submitted data */
         echo "<p><h3>Ще отговорим възможно най-бързо !</h3></p>";
         echo "</div>";
         }
-    } 
-   
-?> 
+    }    
+?>
+

@@ -53,8 +53,8 @@ a {
 }
 #main {
 	background-color: #FEFEFE;
-	height: 70%;
-	margin-top: 2%;
+	height: 71.6%;
+	margin-top: 0.1%;
 	position: relative;
 }
 #first{
@@ -65,7 +65,7 @@ a {
 #second{
 	position: absolute;
 	top:57%;
-	left: 14%;
+	left: 17%;
 	font-size: 17px;
 }
 img {
@@ -84,15 +84,16 @@ img {
 #fourth{
 	position: absolute;
 	top:82%;
-	left: 46%;
+	left: 45%;
 }
 #reg{
 	position: absolute;
+	top: 3%;
 	left: 37%;
 }
 #form{
 	position: absolute;
-	top: 1.5%;
+	top: 5%;
 	left: 39%;
 }
 #success{
@@ -144,7 +145,7 @@ img {
 
 #footer {
 	background-color: #A1A3A6;
-	height: 4%;
+	height: 4.5%;
 	margin-top: 0.3%;
 	text-align: center;
 }

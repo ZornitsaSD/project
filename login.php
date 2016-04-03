@@ -11,7 +11,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
 // 	echo "Connected successfully !";
 // 	}
 
-if(empty($_POST['submit'])){
+if(empty($_POST['username1']) && empty($_POST['password1']) || empty($_POST['submit'])){
 /*echo'<span id="form"><form>
   <div class="form-group">
     <label for="exampleInputUsername">Потребителско име</label>
