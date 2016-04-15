@@ -14,11 +14,10 @@ include_once('includes/header.php');
 </h3>
 </div>
 <div id="third">
-		<a href="registration.php"><h2><span id="lii">Регистрация</span></h2></a>
+		<a href="registration.php"><h2><span id="lii">Регистрация</span></h2></a>		
 </div>
-<div id="fourth">		
-		<a href="login.php"><h2><span id="lii">Вход</span></h2></a>
-		
+<div id="fourth">	
+		<a href="login.php"><h2><span id="lii">Вход</span></h2></a>	
 </div>
 </div>
 
@@ -27,6 +26,9 @@ include_once('includes/footer.php');
 ?>
 
 <?php
+//<a class="btn btn-default" href="registration.php" role="button">Регистрация</a>
+//<a class="btn btn-default" href="registration.php" role="button">Вход</a>	
+
 /*Автомобилите, които преддлагаме за части са с десен волан - директен внос от Англия.
 <p>
 	Разполагаме с части за: HONDA, MAZDA, MITSUBISHI, NISSAN, SUBARU, SUZUKI, TOYOTA.

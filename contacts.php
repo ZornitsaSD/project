@@ -3,6 +3,7 @@ include_once('includes/header.php');
 ?>
 <div id="main">
 <?php  
+$conn = mysqli_connect('localhost', 'root', '', 'autoparts'); 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 if ($action=="")    /* display the contact form */
     {
@@ -17,9 +18,9 @@ if ($action=="")    /* display the contact form */
     Име *:<br>
     <input name="name" type="text" value="" size="30"/><br>
     Email *:<br>
-    <input name="name" type="text" value="" size="30"/><br>
-    Телефон *:<br>
     <input name="email" type="text" value="" size="30"/><br>
+    Телефон *:<br>
+    <input name="phone" type="text" value="" size="30"/><br>
     Съобщение*:<br>
     <textarea name="message" rows="7" cols="30"></textarea><br>
 
@@ -33,30 +34,42 @@ else                /* send the submitted data */
     {
     $name=$_REQUEST['name'];
     $email=$_REQUEST['email'];
+    $phone=$_REQUEST['phone'];
     $message=$_REQUEST['message'];
-    if (($name=="")||($email=="")||($message==""))
+    if (($name=="")||($email=="")||($message=="")||($phone==""))
        {
-        echo "<div id='cont'>";
-        echo "<h3>Задължителните полета не са попълнени !<h3>";
-        echo "</div>";
-        echo "<div id='cont1'>";
-        echo "<p><h3> Моля опитайте отново !<h3></p>";
-        echo "</div>";
-        echo "<div id='cont2'>";
-        echo "<h3><a href=\"\">Назад</a></h3>";
-        echo "</div>";
+        echo "<h3>Задължителните полета не са попълнени !
+        <p> Моля опитайте отново !</p><a href=\"\">Назад</a><h3>";
         }
-    else{        
+    else{ 
+
+    $insert_query =   "INSERT INTO contacts(name, email, phone, message) 
+            VALUES ('$name', '$email', '$phone', '$message')";
+      
+    $insert_result= mysqli_query($conn, $insert_query); 
+
+if ($insert_result) {
         $from="From: $name<$email>\r\nReturn-path: $email";
         $subject="Message sent using your contact form";
-        mail("youremail@yoursite.com", $subject, $message, $from);
+        mail("cbr400rrbulgaria@abv.bg", $subject, $message, $from);
         echo "<div id='cont'>";
         echo "<p><h3>Благодарим ви за изпратеното запитване!</h3></p>";
         echo "</div>";
         echo "<div id='cont1'>";
         echo "<p><h3>Ще отговорим възможно най-бързо !</h3></p>";
         echo "</div>";
-        }
-    }    
-?>
+      }else{
+        echo "Неуспешно изпращане на съобщение! Моля, опитайте по-късно!";
+      }
 
+
+        
+        }
+    } 
+   
+?> 
+</div>
+
+<?php
+include_once('includes/footer.php');
+?>

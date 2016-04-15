@@ -34,6 +34,14 @@ echo "</span></form>";
   $username = $_POST['username'];
   $password = $_POST['password'];
   //$agreement = $_POST['agreement'];
+
+  if (($first_name=="")||($email=="")||($username=="")||($password==""))
+       {
+        echo "<div id='success'><h4>Задължителните полета не са попълнени!<h4></div>";
+        echo "<div id='success1'><p> Моля опитайте отново !</p><a href=\"\">Назад</a></div>";
+        }
+    else{ 
+
   $password = md5($password);
   $insert_query =   "INSERT INTO users(first_name, surname, email, username, password) 
             VALUES ('$first_name', '$surname', '$email', '$username', '$password')";
@@ -51,7 +59,7 @@ echo "</span></form>";
         echo "Неуспешна регистрация! Моля, опитайте по-късно!";
       }
 }
-
+}
 ?>
 </div>
 

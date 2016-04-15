@@ -8,6 +8,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'autoparts');
 if(empty($_POST['submit'])){
 
 	echo "<h3>Въведи нова част</h3>";
+
 	echo "<form action='create.php' method='post'>";
 
 	echo "<p>Въведи описание на частта</p>";
@@ -33,20 +34,6 @@ if(empty($_POST['submit'])){
 	}
 	echo "</select>";
 
-	/*$q1 	= "SELECT * FROM categories WHERE date_deleted IS NULL";
-	$res1 	= mysqli_query($conn, $q1);
-	echo "<p>Избери категория на частта</p>";
-	echo "<select name='id_category'>";
-	
-	if (mysqli_num_rows($res1) > 0) {
-		while($row1 = mysqli_fetch_assoc($res1)){ 
-			echo '<option value="'.$row1['id_category'].'"';
-			if($row1['category_name']==='--'){echo 'selected="--"';}
-			echo '>'.$row1['category_name'].'</option>';
-		}
-	}
-	echo "</select>";*/
-
 	$q2 		= "SELECT * FROM models WHERE date_deleted IS NULL";
 	$res2 	= mysqli_query($conn, $q2);
 	echo "<p>Избери модел на автомобил</p>";
@@ -70,15 +57,12 @@ else{
 	$price		    = $_POST['price'];
 	$id_parts       = $_POST['id_parts'];
 	$id_model       = $_POST['id_model'];
-	//$id_category 	= $_POST['id_category'];
-	
 	
 	$insert_query = 	"INSERT INTO parts(description, instock, price, id_parts, id_model) 
 						VALUES ('$description', $instock, $price, $id_parts, $id_model)";
 		
 	$insert_result= mysqli_query($conn, $insert_query);
 	if ($insert_result) {
-				
 		echo "Успешно добавихте запис в базата данни!";
 		echo "<p><a href='read.php'>Read DB</a></p>";
 	}else{

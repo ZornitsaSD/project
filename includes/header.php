@@ -20,9 +20,14 @@ require_once('includes/functions.php');
 				<li>
 					<a href="index.php"> <span id="white">Начало<span></a>
 				</li>
-                <li>
-                    <a href="contacts.php"><span id="blue">Контакти<span></a>
+                <li>	
+                	<a href="contacts.php"><span id="blue">Контакти<span></a>  
                 </li>
         </ul>
 	</div>
 </div>
+<?php
+//<a class="btn btn-default" href="index.php" role="button">Начало</a>
+//<a class="btn btn-default" href="contacts.php" role="button">Контакти</a>
+
+?>
